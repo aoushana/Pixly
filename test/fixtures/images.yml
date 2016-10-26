@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  link: MyString
+  user_id: MyString
+  datetime: 
+
+two:
+  link: MyString
+  user_id: MyString
+  datetime: 
