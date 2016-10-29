@@ -11,7 +11,7 @@ class ImagesController < ApplicationController
   # GET /images/1
   # GET /images/1.json
   def show
-
+    @image = Image.find(params[:id])
   end
 
   # GET /images/new
@@ -27,30 +27,15 @@ class ImagesController < ApplicationController
   # POST /images
   # POST /images.json
   def create
-    @image = Image.new(user_params)
+    @image = Image.new(image_params)
+    @image.user = current_user
 
-    respond_to do |format|
-      if @image.save
-        format.html { redirect_to @image, notice: 'User was successfully created.' }
-        format.json { render :show, status: :created, location: @image }
-      else
-        format.html { render :new }
-        format.json { render json: @image.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
-  # PATCH/PUT /images/1
-  # PATCH/PUT /images/1.json
-  def update
-    respond_to do |format|
-      if @image.update(user_params)
-        format.html { redirect_to @image, notice: 'User was successfully updated.' }
-        format.json { render :show, status: :ok, location: @image }
-      else
-        format.html { render :edit }
-        format.json { render json: @image.errors, status: :unprocessable_entity }
-      end
+    if @image.save!
+      puts "SUCCEEDED IMAGE UPLOAD"
+      redirect_to @image, notice: 'Image was successfully created.'
+    else
+      puts "FAILED IMAGE UPLOAD"
+      render :new
     end
   end
 
@@ -69,10 +54,14 @@ class ImagesController < ApplicationController
   def set_image
     @image = Image.find(params[:id])
   end
+
+  def set_user
+    @user = current_user
+  end
   # instance variable
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def image_params
-    params.require(:image).permit(:user_name, :email, :password)
+    params.require(:image).permit(:file)
   end
 end

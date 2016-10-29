@@ -1,10 +1,18 @@
 Rails.application.routes.draw do
   get    '/login',   to: 'sessions#new'
   post   '/login',   to: 'sessions#create'
-  delete '/logout',  to: 'sessions#destroy'
+  get '/logout',  to: 'sessions#destroy'
+  get '/upload', to: 'images#new'
+  post '/upload', to: 'images#create'
   resources :users
+  resources :images
   root 'users#index'
 
   # /users/:id
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
+# HTTP verbs
+# GET -> Visiting a URL with intent of reading
+# PUT -> Submitting data to a URL with intent of updating
+# POST -> Submitting data to a URL with intent of creating
+# DELETE -> Submitting data to a URL with intend of deleting
