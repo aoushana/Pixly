@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161027000625) do
+ActiveRecord::Schema.define(version: 20161028195841) do
 
   create_table "images", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "link"
@@ -24,10 +24,18 @@ ActiveRecord::Schema.define(version: 20161027000625) do
     t.string   "username"
     t.string   "email"
     t.string   "password"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
     t.string   "password_digest"
     t.string   "RememberDigest"
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
+    t.string   "image_file_file_name"
+    t.string   "image_file_content_type"
+    t.integer  "image_file_file_size"
+    t.datetime "image_file_updated_at"
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
   end
 

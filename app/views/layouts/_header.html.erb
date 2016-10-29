@@ -1,0 +1,16 @@
+<div class="navbar">
+  <strong>Pixly</strong>
+
+  <div     class="actions">
+      <% if logged_in? %>
+          Hello, <%= current_user.username %>!
+          <!--Upload-->
+          <!-- link_to "Upload", controller: 'images', action: 'new' -->
+        <!--else?-->
+         <!--link_to "Log out", controller: "sessions", action: "destroy", method: :delete %>-->
+        <%= link_to "Sign up", new_user_path %>
+          <%= link_to "Log in", controller: "sessions", action: "new" %>
+      <% end %>
+  </div>
+</div>
+ <!--link_to 'log out', {:action => "destroy", :controller=> @sessions, :method => :delete { confirm: 'Are you sure?' } %>-->

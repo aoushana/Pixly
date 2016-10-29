@@ -5,6 +5,7 @@ class ImagesController < ApplicationController
   # GET /images.json
   def index
     @images = Image.all
+
   end
 
   # GET /images/1
@@ -16,6 +17,7 @@ class ImagesController < ApplicationController
   # GET /images/new
   def new
     @image = Image.new
+  #   show the template
   end
 
   # GET /images/1/edit

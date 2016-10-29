@@ -1,5 +1,15 @@
  forms
 
+ .navbar {
+   background: #222;
+   color: #fff;
+   padding: 15px;
+ }
+
+ .actions {
+   float: right;
+ }
+
 input, textarea, select, .uneditable-input {
   border: 1px solid #bbb;
   width: 100%;

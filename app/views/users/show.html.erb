@@ -1,2 +1,10 @@
-<%= @user.username %>, <%= @user.email %>
-
+<%= form_for(:session, url: login_path) do |f| %>
+    <%= f.label :image %>
+    <%= f.file_field :image %>
+    <%= @user.image(params[:image]) %>
+    <% @user.image = [1,2,3] %>
+    <% @user.image.each do |image| %>
+        <%= image%> "Adrena"
+    <%end %>
+    <%= submit_tag "Accept Checked", :class => "btn btn-primary" %>
+<% end %>
