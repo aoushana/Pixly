@@ -11,7 +11,8 @@ class UsersController < ApplicationController
   # GET /users/1.json
   def show
     @user = User.find(params[:id])
-    #@images = Images.findBy(:userId params[:id])
+    # @user = @image.user(params[:id])
+    # @images = @user.find_by(:id params[:image])
   end
 
   # GET /users/new
