@@ -4,9 +4,11 @@ Rails.application.routes.draw do
   get '/logout',  to: 'sessions#destroy'
   get '/upload', to: 'images#new'
   post '/upload', to: 'images#create'
+
   resources :users
   resources :images
-  root 'users#index'
+
+  root 'images#index'
 
   # /users/:id
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
