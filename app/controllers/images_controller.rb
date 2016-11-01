@@ -4,7 +4,7 @@ class ImagesController < ApplicationController
   # GET /images
   # GET /images.json
   def index
-    @images = Image.all
+    @images = Image.limit(50).all
   #   fetchs all of the images from the database. images is an array of image models
   #   show 50 images instead of all.
 

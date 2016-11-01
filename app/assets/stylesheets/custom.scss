@@ -1,14 +1,29 @@
- forms
-
+body {
+  background-color: #F7F7F7;
+}
  .navbar {
-   background: #222;
-   color: #fff;
+   background: grey;
+   color: black;
    padding: 15px;
+   font-family: Impact, Haettenschweiler, "Franklin Gothic Bold", Charcoal, "Helvetica Inserat", "Bitstream Vera Sans Bold", "Arial Black", "sans serif";
+   font-size: 25px;
+   font-style: normal;
+   font-variant: normal;
+   font-weight: 500;
+   line-height: 26.4px;
  }
+  .navbar .actions a {
+    text-decoration: none;
+    margin: 5px;
+    color: black;
+  }
 
- .actions {
+  a:link {
+    color: #2E2F30;
+  }
+.actions {
    float: right;
- }
+}
 
 input, textarea, select, .uneditable-input {
   border: 1px solid #bbb;
@@ -20,13 +35,15 @@ input, textarea, select, .uneditable-input {
 
 input {
   height: auto !important;
+  width: 200px !important;
+  text-align: left !important;
+  display: block !important;
 }
 
  .checkbox {
    margin-top: -10px;
    margin-bottom: 10px;
    span {
-     margin-left: 20px;
      font-weight: normal;
    }
  }
