@@ -1,2 +1,6 @@
 <%= image_tag(@image.file.url(:large))%>
+<p>
+  <%= @image.caption %>
+</p>
+
 <%= link_to "back to Pixly", root_path %>

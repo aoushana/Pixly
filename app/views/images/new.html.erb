@@ -1,5 +1,10 @@
 <%= form_for @image, url: upload_path, html: { multipart: true } do |form| %>
+    <%= form.label :file %>
     <%= form.file_field :file %>
+
+    <%= form.label :caption %>
+    <%= form.text_field :caption %>
+
 
     <div>
       <%= form.submit %>
