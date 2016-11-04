@@ -4,6 +4,7 @@ class ImagesController < ApplicationController
   # GET /images
   # GET /images.json
   def index
+    set_user
     @images = Image.limit(50).all
   #   fetchs all of the images from the database. images is an array of image models
   #   show 50 images instead of all.
@@ -14,6 +15,7 @@ class ImagesController < ApplicationController
   # GET /images/1.json
   def show
     @image = Image.find(params[:id])
+    @votes = @image.votes_for.all
   end
 
   # GET /images/new
@@ -32,7 +34,7 @@ class ImagesController < ApplicationController
     @image = Image.new(image_params)
     @image.user = current_user
 
-    if @image.save!
+    if @image.save
       puts "SUCCEEDED IMAGE UPLOAD"
       redirect_to @image, notice: 'Image was successfully created.'
     else
@@ -51,6 +53,19 @@ class ImagesController < ApplicationController
     end
   end
 
+  def like
+    @image = Image.find(params[:id])
+    @image.upvote_by current_user
+    redirect_to images_path
+  end
+
+  def dislike
+    @image = Image.find(params[:id])
+    @image.downvote_by current_user
+    redirect_to images_path
+  end
+
+
   private
   # Use callbacks to share common setup or constraints between actions.
   def set_image
@@ -61,6 +76,9 @@ class ImagesController < ApplicationController
     @user = current_user
   end
   # instance variable
+
+
+
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def image_params

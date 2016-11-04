@@ -34,10 +34,10 @@ input, textarea, select, .uneditable-input {
 }
 
 input {
-  height: auto !important;
-  width: 200px !important;
-  text-align: left !important;
-  display: block !important;
+  height: auto;
+  width: 200px;
+  text-align: left;
+  display: block;
 }
 
  .checkbox {
@@ -51,4 +51,18 @@ input {
  #session_remember_me {
    width: auto;
    margin-left: 0;
+ }
+
+ .image-metadata{
+   text-align: center;
+ }
+
+.image-metadata input {
+  width: 20px;
+  display: inline;
+}
+
+
+ .image-metadata form.button_to{
+   display: inline;
  }

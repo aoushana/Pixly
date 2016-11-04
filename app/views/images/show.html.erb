@@ -2,5 +2,18 @@
 <p>
   <%= @image.caption %>
 </p>
+<% @votes.each do |vote| %>
+    <%= link_to like_vote_path(vote), method: :put do %>
+        Upvote
+        <%= @image.get_upvotes.size %>
+    <% end %>
+
+    <%= link_to dislike_vote_path(vote), method: :put do %>
+        Downvote
+        <%= @image.get_downvotes.size %>
+    <% end %>
+      Submitted <%= time_ago_in_words(vote.created_at) %>
+      by <%= vote.voter.email %>
+<% end %>
 
 <%= link_to "back to Pixly", root_path %>

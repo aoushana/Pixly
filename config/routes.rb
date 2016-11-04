@@ -6,7 +6,15 @@ Rails.application.routes.draw do
   post '/upload', to: 'images#create'
 
   resources :users
-  resources :images
+  resources :images do
+    member do
+      put "like"
+      put "dislike"
+    end
+  end
+
+  resources :votes
+
 
   root 'images#index'
 

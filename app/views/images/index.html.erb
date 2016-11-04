@@ -1,8 +1,37 @@
 <% @images.each do |image| %>
-    <%= link_to image_tag(image.file.url(:medium)), image %>
-    <!--loops through each images -->
-<% end %>
+    <div style="display:inline-block">
+      <%= link_to image_tag(image.file.url(:medium)), image %>
 
+      <div class="image-metadata">
+
+        <div><%= image.caption %></div>
+        <div>
+            <%= pluralize(image.votes_for.count, "vote") %>
+
+            <% if true || current_user.present? %>
+                <%= button_to '+1', like_image_path(image), method: :put  %>
+                <%= button_to '-1', dislike_image_path(image), method: :put %>
+
+                <!--<%= form_tag like_image_path(image), method: :put do %>-->
+                  <!--<i class="icono-upArrow"></i>-->
+                <!--<% end %>-->
+
+
+
+                   <!--<i class="icono-upArrow"></i>-->
+              <!--<i class="icono-downArrow"></i>-->
+            <!--<% end %>-->
+
+            <% if false && image.user.id == current_user.id %>
+                <%= link_to 'Edit', edit_image_path(image) %>
+                <%= link_to 'Destroy', image, method: :delete, data: { confirm: 'Are you sure?' } %>
+            <% end %>
+        </div>
+
+      </div>
+
+    </div>
+<% end %>
 
 <!--images.forEach(function (image) {-->
 <!--});-->
