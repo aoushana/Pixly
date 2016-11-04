@@ -78,13 +78,21 @@ input {
    margin: 0;
  }
 
+.image-metadata form.like-frm button {
+  color: lightgrey;
+}
+
 .image-metadata form.like-frm button:hover {
   cursor: pointer;
   color: orange;
 }
 
+.image-metadata form.like-frm button i {
+  color: inherit;
+}
+
 .image-metadata form.like-frm button i:hover {
-  color: orange;
+  color: inherit;
 }
 
  .upvote-btn i{
