@@ -66,3 +66,27 @@ input {
  .image-metadata form.button_to{
    display: inline;
  }
+
+ .image-metadata form.like-frm{
+   display: inline;
+ }
+
+ .image-metadata form.like-frm button {
+   border: none;
+   background-color: transparent;
+   padding: 0;
+   margin: 0;
+ }
+
+.image-metadata form.like-frm button:hover {
+  cursor: pointer;
+  color: orange;
+}
+
+.image-metadata form.like-frm button i:hover {
+  color: orange;
+}
+
+ .upvote-btn i{
+   margin-right: -5px;
+ }

@@ -9,18 +9,18 @@
             <%= pluralize(image.votes_for.count, "vote") %>
 
             <% if true || current_user.present? %>
-                <%= button_to '+1', like_image_path(image), method: :put  %>
-                <%= button_to '-1', dislike_image_path(image), method: :put %>
+                <%= form_tag like_image_path(image), method: :put, class: 'like-frm' do %>
+                  <button type="submit" class="upvote-btn">
+                    <i class="icono-upArrow"></i>
+                  </button>
+                <% end %>
 
-                <!--<%= form_tag like_image_path(image), method: :put do %>-->
-                  <!--<i class="icono-upArrow"></i>-->
-                <!--<% end %>-->
-
-
-
-                   <!--<i class="icono-upArrow"></i>-->
-              <!--<i class="icono-downArrow"></i>-->
-            <!--<% end %>-->
+                <%= form_tag dislike_image_path(image), method: :put, class: 'like-frm' do %>
+                  <button type="submit">
+                    <i class="icono-downArrow"></i>
+                  </button>
+                <% end %>
+            <% end %>
 
             <% if false && image.user.id == current_user.id %>
                 <%= link_to 'Edit', edit_image_path(image) %>
