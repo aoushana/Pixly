@@ -52,6 +52,9 @@ input {
    width: auto;
    margin-left: 0;
  }
+ .image {
+   display: inline-block;
+ }
 
  .image-metadata{
    text-align: center;
@@ -83,12 +86,9 @@ input {
    background-color: transparent;
    padding: 0;
    margin: 0;
+   color: lightgrey;
+   transform: scale(0.8);
  }
-
-.image-metadata form.like-frm button {
-  color: lightgrey;
-  transform: scale(0.8);
-}
 
 .image-metadata form.like-frm button:hover {
   cursor: pointer;

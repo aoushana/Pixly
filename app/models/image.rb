@@ -1,4 +1,5 @@
 class Image < ApplicationRecord
+  #Image is your model
   acts_as_votable
   belongs_to :user
   validates :user, presence: true
