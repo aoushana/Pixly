@@ -55,6 +55,12 @@ input {
 
  .image-metadata{
    text-align: center;
+   font-family: sans-serif;
+   margin-bottom: 15px;
+ }
+
+ .image-metadata .caption{
+   font-weight: 100;
  }
 
 .image-metadata input {
@@ -69,6 +75,7 @@ input {
 
  .image-metadata form.like-frm{
    display: inline;
+   vertical-align: super;
  }
 
  .image-metadata form.like-frm button {
@@ -80,6 +87,7 @@ input {
 
 .image-metadata form.like-frm button {
   color: lightgrey;
+  transform: scale(0.8);
 }
 
 .image-metadata form.like-frm button:hover {
@@ -89,12 +97,10 @@ input {
 
 .image-metadata form.like-frm button i {
   color: inherit;
+  margin-right: -5px;
 }
 
 .image-metadata form.like-frm button i:hover {
   color: inherit;
 }
 
- .upvote-btn i{
-   margin-right: -5px;
- }

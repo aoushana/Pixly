@@ -3,11 +3,11 @@
       <%= link_to image_tag(image.file.url(:medium)), image %>
 
       <div class="image-metadata">
+        <div class="caption">
+            <%= image.caption %>
+        </div>
 
-        <div><%= image.caption %></div>
         <div>
-            <%= pluralize(image.votes_for.count, "vote") %>
-
             <% if true || current_user.present? %>
                 <%= form_tag like_image_path(image), method: :put, class: 'like-frm' do %>
                   <button type="submit" class="upvote-btn">
@@ -15,11 +15,18 @@
                   </button>
                 <% end %>
 
+                <!-- put num of upvotes here -->
+                <small>&nbsp;<%= pluralize(image.votes_for.count, "vote") %></small>
+
                 <%= form_tag dislike_image_path(image), method: :put, class: 'like-frm' do %>
                   <button type="submit">
                     <i class="icono-downArrow"></i>
                   </button>
                 <% end %>
+
+                <!-- put num of downvotes here -->
+                <small>&nbsp;<%= pluralize(image.votes_for.count, "vote") %></small>
+
             <% end %>
 
             <% if false && image.user.id == current_user.id %>
@@ -27,6 +34,8 @@
                 <%= link_to 'Destroy', image, method: :delete, data: { confirm: 'Are you sure?' } %>
             <% end %>
         </div>
+
+
 
       </div>
 
