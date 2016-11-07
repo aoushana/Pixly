@@ -1,4 +1,11 @@
 <h3>Home</h3>
+<form>
+    <select name="sortBy">
+        <option>Latest</option>
+        <option>Popular</option>
+    </select>
+    <input type="submit">
+</form>
 <% @images.each do |image| %>
     <div class = "image">
       <%= link_to image_tag(image.file.url(:medium)), image %>

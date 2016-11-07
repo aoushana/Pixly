@@ -1,32 +1,22 @@
 class ImagesController < ApplicationController
-  before_action :set_user, only: [:show, :edit, :update, :destroy]
+  before_action :set_user, only: [:index, :show, :edit, :update, :destroy]
 
   # GET /images
   # GET /images.json
+
   def index
-    set_user
-    @images = Image.limit(50).all
+    # @images = Image.limit(50).all
+    # @images = Image.order("created_at DESC").all
+    # @images = Image.joins( "JOIN votes AS v on v.votable_type = 'Image' and v.votable_id = images.id" ).group( "images.id" ).order( "count(images.id) desc" ).all
     # fetchs all of the images from the database. images is an array of image models
     # show 50 images instead of all.
+    sortBy = params[:sortBy]
 
-    # @filterrific = initialize_filterrific(
-    #     Image,
-    #     params[:filterrific],
-    #     select_options: {
-    #         sorted_by: Images.options_for_sorted_by,
-    #         with_user_id: User.options_for_select
-    #     },
-    #     persistence_id: 'shared_key',
-    #     default_filter_params: {},
-    #     available_filters: [],
-    # ) or return
-    #
-    # @image = @filterrific.find.page(params[:page])
-    #
-    # respond_to do |format|
-    # end
-
-
+    if sortBy == "Popular"
+      @images = Image.joins( "JOIN votes AS v on v.votable_type = 'Image' and v.votable_id = images.id" ).group( "images.id" ).order( "count(images.id) desc" ).all
+    else
+      @images = Image.limit(50)
+    end
   end
 
   # GET /images/1
