@@ -2,6 +2,7 @@ module SessionsHelper
   # Logs in the given user.
   def log_in(user)
     session[:user_id] = user.id
+    #session.user_id = 5
   end
 
   # Remembers a user in a persistent session.
@@ -49,3 +50,11 @@ module SessionsHelper
     @current_user = nil
   end
 end
+
+#
+# num+=5
+# num = num + 5
+#
+# user ||= User.find(...)
+#
+# user = user || User.find

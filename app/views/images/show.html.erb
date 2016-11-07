@@ -1,19 +1,46 @@
+<h3> <%= @image.user.username %> </h3>
 <%= image_tag(@image.file.url(:large))%>
 <p>
   <%= @image.caption %>
 </p>
-<% @votes.each do |vote| %>
-    <%= link_to like_vote_path(vote), method: :put do %>
-        Upvote
-        <%= @image.get_upvotes.size %>
-    <% end %>
+<div class="image-metadata">
+  <%= form_tag like_image_path(@image), method: :put, class: 'like-frm' do %>
+      <button type="submit" class="upvote-btn">
+        <i class="icono-upArrow"></i>
+      </button>
+  <% end %>
 
-    <%= link_to dislike_vote_path(vote), method: :put do %>
-        Downvote
-        <%= @image.get_downvotes.size %>
+  <!-- put num of upvotes here -->
+  <small>&nbsp;<%= @image.get_upvotes.size %></small>
+
+  <%= form_tag dislike_image_path(@image), method: :put, class: 'like-frm downvote' do %>
+      <button type="submit">
+        <i class="icono-downArrow"></i>
+      </button>
+  <% end %>
+
+  <!-- put num of downvotes here -->
+  <small>&nbsp;<%= @image.get_downvotes.size %></small>
+</div>
+
+ <% if @votes.length > 0 %>
+    <% if false %>
+        <%= link_to like_vote_path(vote), method: :put do %>
+            Upvote
+            <%= @image.get_upvotes.size %>
+        <% end %>
+
+        <%= link_to dislike_vote_path(vote), method: :put do %>
+            Downvote
+            <%= @image.get_downvotes.size %>
+        <% end %>
+          Submitted <%= time_ago_in_words(vote.created_at) %>
+          by <%= vote.voter.email %>
     <% end %>
-      Submitted <%= time_ago_in_words(vote.created_at) %>
-      by <%= vote.voter.email %>
 <% end %>
 
-<%= link_to "back to Pixly", root_path %>
+<% if @image.user == @current_user %>
+    <%= button_to "delete image", @image, :controller=>:image, :action => :destroy %>
+<% end %>
+<%= link_to "back to user", @image.user %>
+

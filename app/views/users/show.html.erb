@@ -1,4 +1,4 @@
+<h3> <%= @user.username %> </h3>
 <% @user.images.each do |image| %>
-    <%= image_tag image.file.url(:medium) %>
+    <%= link_to image_tag(image.file.url(:medium)), image %>
 <% end %>
-<%= link_to "back to Pixly", root_path %>

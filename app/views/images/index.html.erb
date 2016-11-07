@@ -1,36 +1,7 @@
+<h3>Home</h3>
 <% @images.each do |image| %>
     <div class = "image">
       <%= link_to image_tag(image.file.url(:medium)), image %>
-
-      <div class="image-metadata">
-        <div class="caption">
-            <%= image.caption %>
-        </div>
-
-        <div>
-                <%= form_tag like_image_path(image), method: :put, class: 'like-frm' do %>
-                  <button type="submit" class="upvote-btn">
-                    <i class="icono-upArrow"></i>
-                  </button>
-                <% end %>
-
-                <!-- put num of upvotes here -->
-                <small>&nbsp;<%= pluralize(image.votes_for.count, "vote") %></small>
-
-                <%= form_tag dislike_image_path(image), method: :put, class: 'like-frm' do %>
-                  <button type="submit">
-                    <i class="icono-downArrow"></i>
-                  </button>
-                <% end %>
-
-                <!-- put num of downvotes here -->
-                <small>&nbsp;<%= pluralize(image.votes_for.count, "vote") %></small>
-        </div>
-
-
-
-      </div>
-
     </div>
 <% end %>
 

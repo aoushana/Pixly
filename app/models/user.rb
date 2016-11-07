@@ -1,6 +1,9 @@
 class User < ApplicationRecord
+  before_save :delete_file, if: ->{ remove_file == '1' && !file_updated_at_changed? }
   acts_as_voter
   has_many :images
+  attr_accessor :remove_file
+  has_attached_file :file
   attr_accessor :remember_token
   before_save { self.email = email.downcase }
   validates :username, presence: true, length: { maximum: 50}
@@ -43,3 +46,6 @@ def delete_image
   self.image = nil
 end
 
+def self.options_for_select
+  order('LOWER(name)').map { |e| [e.name, e.id] }
+end

@@ -6,8 +6,26 @@ class ImagesController < ApplicationController
   def index
     set_user
     @images = Image.limit(50).all
-  #   fetchs all of the images from the database. images is an array of image models
-  #   show 50 images instead of all.
+    # fetchs all of the images from the database. images is an array of image models
+    # show 50 images instead of all.
+
+    # @filterrific = initialize_filterrific(
+    #     Image,
+    #     params[:filterrific],
+    #     select_options: {
+    #         sorted_by: Images.options_for_sorted_by,
+    #         with_user_id: User.options_for_select
+    #     },
+    #     persistence_id: 'shared_key',
+    #     default_filter_params: {},
+    #     available_filters: [],
+    # ) or return
+    #
+    # @image = @filterrific.find.page(params[:page])
+    #
+    # respond_to do |format|
+    # end
+
 
   end
 
@@ -43,26 +61,40 @@ class ImagesController < ApplicationController
     end
   end
 
-  # DELETE /images/1
+  # DELETE /images/1/delete
   # DELETE /images/1.json
   def destroy
-    @user.destroy
-    respond_to do |format|
-      format.html { redirect_to images_url, notice: 'User was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+    @image = Image.find(params[:id])
+    @image.destroy
+    redirect_to @image.user, notice: 'image was successfully destroyed.'
   end
 
   def like
-    @image = Image.find(params[:id])
-    @image.upvote_by current_user
-    redirect_to images_path
+    unless logged_in?
+      redirect_to login_path
+    else
+      @image = Image.find(params[:id])
+      if current_user.voted_up_on? @image
+        @image.unvote_by current_user
+      else
+        @image.upvote_by current_user
+      end
+      redirect_to @image
+   end
   end
 
   def dislike
-    @image = Image.find(params[:id])
-    @image.downvote_by current_user
-    redirect_to images_path
+    unless logged_in?
+      redirect_to login_path
+    else
+      @image = Image.find(params[:id])
+      if current_user.voted_down_on? @image
+        @image.unvote_by current_user
+      else
+        @image.downvote_by current_user
+      end
+      redirect_to @image
+    end
   end
 
 
@@ -78,6 +110,14 @@ class ImagesController < ApplicationController
   # instance variable
 
 
+  def options_for_sorted_by
+    [
+        ['Name (a-z)', 'name_asc'],
+        ['Registration date (newest first)', 'created_at_desc'],
+        ['Registration date (oldest first)', 'created_at_asc'],
+        ['Users (a-z)', 'users_name_asc']
+    ]
+  end
 
 
   # Never trust parameters from the scary internet, only allow the white list through.

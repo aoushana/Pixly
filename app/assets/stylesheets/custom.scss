@@ -12,15 +12,21 @@ body {
    font-weight: 500;
    line-height: 26.4px;
  }
-  .navbar .actions a {
-    text-decoration: none;
-    margin: 5px;
-    color: black;
-  }
+.navbar .actions a,
+.navbar .logo {
+  text-decoration: none;
+  margin: 5px;
+  color: black;
+}
 
-  a:link {
-    color: #2E2F30;
-  }
+.container {
+  width: 800px;
+  margin: auto;
+}
+
+a:link {
+  color: #2E2F30;
+}
 .actions {
    float: right;
 }
@@ -57,7 +63,6 @@ input {
  }
 
  .image-metadata{
-   text-align: center;
    font-family: sans-serif;
    margin-bottom: 15px;
  }
@@ -93,6 +98,9 @@ input {
 .image-metadata form.like-frm button:hover {
   cursor: pointer;
   color: orange;
+}
+.image-metadata form.like-frm.downvote button:hover {
+  color: purple;
 }
 
 .image-metadata form.like-frm button i {
