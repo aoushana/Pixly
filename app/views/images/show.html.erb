@@ -24,7 +24,7 @@
 </div>
 
 <% if @image.user == @current_user %>
-    <%= button_to "delete image", @image, :controller=>:image, :action => :destroy %>
+    <%= button_to "delete image", @image, :method=>:delete, :controller=>:image, :action => :destroy %>
 <% end %>
 <%= link_to "back to user", @image.user %>
 
